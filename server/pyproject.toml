@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "meganjohns"
+version = "0.1.0"
+package-mode = false
+description = "FastAPI backend for meganjohns.com"
+authors = ["Lucas Jensen <lucas@lucasjensen.me>"]
+readme = "README.md"
+packages = [{ include = "app" }]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+fastapi = "^0.111.0"
+mysql-connector-python = "^8.4.0"
+python-dotenv = "^1.0.1"
+
+[tool.poetry.scripts]
+dev = "app.scripts.run:main"
+seed = "app.scripts.seed:main"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
