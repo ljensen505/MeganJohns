@@ -18,3 +18,6 @@ class Album(BaseModel):
     itunes_url: Optional[HttpUrl] = None
     bandcamp_url: Optional[HttpUrl] = None
     apple_music_url: Optional[HttpUrl] = None
+    front_artwork_url: Optional[HttpUrl] = None
+    rear_artwork_url: Optional[HttpUrl] = None
+    bandcamp_player_src: Optional[HttpUrl] = None

@@ -1,24 +1,28 @@
 from asyncio import gather
-from pprint import pprint
 
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 from app.controllers.controller import Controller
 from app.models.meganjohns import MeganJohns
 from app.routers.albums import router as albums_router
 from app.routers.artwork import router as artwork_router
 
+origins = ["http://localhost:5173"]
+c = Controller()
 app = FastAPI()
 app.include_router(albums_router)
 app.include_router(artwork_router)
-
-c = Controller()
-
-origins = ["https://localhost:3000"]
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 @app.get("/")
 async def root() -> MeganJohns:
-    # TODO: use asyncio.gather() here once more data is available
-    albums = await c.get_all_albums()
-    return MeganJohns(albums=albums)
+    albums, artwork = await gather(c.get_all_albums(), c.get_all_artwork())
+    return MeganJohns(albums=albums, artwork=artwork)
