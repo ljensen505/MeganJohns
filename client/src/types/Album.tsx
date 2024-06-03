@@ -21,7 +21,7 @@ class Album {
   apple_music_url?: string;
   front_artwork_url?: string;
   rear_artwork_url?: string;
-  bandcamp_player_src?: string;
+  bandcamp_player?: string;
 
   constructor(
     album_id: number,
@@ -46,7 +46,7 @@ class Album {
     this.apple_music_url = apple_music_url;
     this.front_artwork_url = front_artwork_url;
     this.rear_artwork_url = rear_artwork_url;
-    this.bandcamp_player_src = bandcamp_player_src;
+    this.bandcamp_player = bandcamp_player_src;
   }
 }
 

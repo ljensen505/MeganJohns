@@ -1,5 +1,6 @@
 import { Album } from "../types/Album";
-import { ListGroup } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
+import AlbumCard from "./AlbumCard";
 
 interface DiscographyProps {
   albums: Album[];
@@ -8,14 +9,14 @@ interface DiscographyProps {
 export default function Discography(props: DiscographyProps) {
   return (
     <>
-      <h3>Discography</h3>
-      <ListGroup>
-        {props.albums.map((album) => (
-          <ListGroup.Item key={album.album_id}>
-            {album.album_name} ({album.release_year})
-          </ListGroup.Item>
-        ))}
-      </ListGroup>
+      <h2 id="discography">Discography</h2>
+      <Container>
+        <Row className="justify-content-center">
+          {props.albums.map((album) => (
+            <AlbumCard key={album.album_id} album={album} />
+          ))}
+        </Row>
+      </Container>
     </>
   );
 }

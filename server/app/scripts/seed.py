@@ -131,7 +131,7 @@ albums: list[Album] = [
         apple_music_url="https://music.apple.com/us/album/dirty-shoes/74351635",  # type: ignore
         bandcamp_url="https://meganjohns.bandcamp.com/track/fog",  # type: ignore
         front_artwork_url="https://res.cloudinary.com/dreftv0ue/image/upload/v1717363942/MeganJohns/Discography%20-%20Album%20%2B%20Single%20Covers/Dirty_Shoes_Cover_2005_bnb8u0.jpg",  # type: ignore
-        bandcamp_player_src="https://bandcamp.com/EmbeddedPlayer/track=2275072448/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/",  # type: ignore
+        bandcamp_player='<iframe style="border: 0; width: 100%; height: 120px;" src="https://bandcamp.com/EmbeddedPlayer/track=2275072448/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/artwork=small/transparent=true/" seamless><a href="https://meganjohns.bandcamp.com/track/fog">Fog by Megan Johns</a></iframe>',
     ),
     Album(
         album_id=0,
@@ -141,7 +141,7 @@ albums: list[Album] = [
         apple_music_url="https://music.apple.com/us/album/hey-lonely/565637660",  # type: ignore
         front_artwork_url="https://res.cloudinary.com/dreftv0ue/image/upload/v1717363966/MeganJohns/Discography%20-%20Album%20%2B%20Single%20Covers/Hey_Lonely_Jacket_hires-2_kwo34f.jpg",  # type: ignore
         rear_artwork_url="https://res.cloudinary.com/dreftv0ue/image/upload/v1717364028/MeganJohns/Discography%20-%20Album%20%2B%20Single%20Covers/Hey_Lonely_Reverse2_esmjia.jpg",  # type: ignore
-        bandcamp_player_src="https://bandcamp.com/EmbeddedPlayer/album=2623205502/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/",  # type: ignore
+        bandcamp_player='<iframe style="border: 0; width: 100%; height: 120px;" src="https://bandcamp.com/EmbeddedPlayer/album=2623205502/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/artwork=small/transparent=true/" seamless><a href="https://meganjohns.bandcamp.com/album/hey-lonely">Hey, Lonely by Megan Johns</a></iframe>',
     ),
     Album(
         album_id=0,
@@ -150,7 +150,7 @@ albums: list[Album] = [
         artist=megan_artist,
         bandcamp_url="https://meganjohns.bandcamp.com/track/gemini",  # type: ignore
         front_artwork_url="https://res.cloudinary.com/dreftv0ue/image/upload/v1717363956/MeganJohns/Discography%20-%20Album%20%2B%20Single%20Covers/Gemini_MoonWish_Single_2015_spgv2m.jpg",  # type: ignore
-        bandcamp_player_src="https://bandcamp.com/EmbeddedPlayer/track=2493215358/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/",  # type: ignore
+        bandcamp_player='<iframe style="border: 0; width: 100%; height: 120px;" src="https://bandcamp.com/EmbeddedPlayer/track=2493215358/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/artwork=small/transparent=true/" seamless><a href="https://meganjohns.bandcamp.com/track/gemini">Gemini by Moonwish</a></iframe>',
     ),
     Album(
         album_id=0,
@@ -160,7 +160,7 @@ albums: list[Album] = [
         bandcamp_url="https://meganjohns.bandcamp.com/album/inner-voice-ep",  # type: ignore
         front_artwork_url="https://res.cloudinary.com/dreftv0ue/image/upload/v1717363981/MeganJohns/Discography%20-%20Album%20%2B%20Single%20Covers/Inner_Voice_EP_2019_po0nbq.jpg",  # type: ignore
         rear_artwork_url="https://res.cloudinary.com/dreftv0ue/image/upload/v1717363984/MeganJohns/Discography%20-%20Album%20%2B%20Single%20Covers/Inner_Voice_EP_Backcover_2019_ilenfq.jpg",  # type: ignore
-        bandcamp_player_src="https://bandcamp.com/EmbeddedPlayer/album=1645073059/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/",  # type: ignore
+        bandcamp_player='<iframe style="border: 0; width: 100%; height: 120px;" src="https://bandcamp.com/EmbeddedPlayer/album=1645073059/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/artwork=small/transparent=true/" seamless><a href="https://meganjohns.bandcamp.com/album/inner-voice-ep">Inner Voice EP by Megan Johns</a></iframe>',
     ),
     Album(
         album_id=0,
@@ -169,7 +169,7 @@ albums: list[Album] = [
         artist=megan_artist,
         bandcamp_url="https://meganjohns.bandcamp.com/album/moonwish-recordings-2015",  # type: ignore
         front_artwork_url="https://res.cloudinary.com/dreftv0ue/image/upload/v1717363988/MeganJohns/Discography%20-%20Album%20%2B%20Single%20Covers/MoonWish_Recordings_2015_j3pzyd.jpg",  # type: ignore
-        bandcamp_player_src="https://bandcamp.com/EmbeddedPlayer/album=3211709152/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/",  # type: ignore
+        bandcamp_player='<iframe style="border: 0; width: 100%; height: 120px;" src="https://bandcamp.com/EmbeddedPlayer/album=3211709152/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/artwork=small/transparent=true/" seamless><a href="https://meganjohns.bandcamp.com/album/moonwish-recordings-2015">MoonWish Recordings 2015 by Megan Johns</a></iframe>',
     ),
     Album(
         album_id=0,
@@ -194,7 +194,7 @@ albums: list[Album] = [
         artist=megan_artist,
         bandcamp_url="https://meganjohns.bandcamp.com/track/human",  # type: ignore
         front_artwork_url="https://res.cloudinary.com/dreftv0ue/image/upload/v1717363973/MeganJohns/Discography%20-%20Album%20%2B%20Single%20Covers/Human_Single_2022_lknlpc.png",  # type: ignore
-        bandcamp_player_src="https://bandcamp.com/EmbeddedPlayer/track=3620590740/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/",  # type: ignore
+        bandcamp_player='<iframe style="border: 0; width: 100%; height: 120px;" src="https://bandcamp.com/EmbeddedPlayer/track=3620590740/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/artwork=small/transparent=true/" seamless><a href="https://meganjohns.bandcamp.com/track/human">Human by Megan Johns</a></iframe>',
     ),
     Album(
         album_id=0,
@@ -203,7 +203,7 @@ albums: list[Album] = [
         artist=megan_artist,
         bandcamp_url="https://meganjohns.bandcamp.com/track/i-am-old",  # type: ignore
         front_artwork_url="https://res.cloudinary.com/dreftv0ue/image/upload/v1717363976/MeganJohns/Discography%20-%20Album%20%2B%20Single%20Covers/I_Am_Old_Single_2022_mao2yw.jpg",  # type: ignore
-        bandcamp_player_src="https://bandcamp.com/EmbeddedPlayer/track=2078638263/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/",  # type: ignore
+        bandcamp_player='<iframe style="border: 0; width: 100%; height: 120px;" src="https://bandcamp.com/EmbeddedPlayer/track=2078638263/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/artwork=small/transparent=true/" seamless><a href="https://meganjohns.bandcamp.com/track/i-am-old">I Am Old by Megan Johns</a></iframe>',
     ),
 ]
 
@@ -248,7 +248,7 @@ def seed_albums() -> None:
             apple_music_url VARCHAR(255),
             front_artwork_url VARCHAR(255),
             rear_artwork_url VARCHAR(255),
-            bandcamp_player_src VARCHAR(255),
+            bandcamp_player VARCHAR(1024),
             PRIMARY KEY (album_id),
             FOREIGN KEY (artist_id) REFERENCES {ARTISTS_TABLE}(artist_id) ON DELETE CASCADE
         );
@@ -257,7 +257,7 @@ def seed_albums() -> None:
     for album in albums:
         cursor.execute(
             f"""-- sql
-            INSERT INTO {ALBUMS_TABLE} (album_name, release_year, artist_id, spotify_url, itunes_url, bandcamp_url, apple_music_url, front_artwork_url, rear_artwork_url, bandcamp_player_src)
+            INSERT INTO {ALBUMS_TABLE} (album_name, release_year, artist_id, spotify_url, itunes_url, bandcamp_url, apple_music_url, front_artwork_url, rear_artwork_url, bandcamp_player)
                 VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s);
             """,
             (
@@ -270,7 +270,7 @@ def seed_albums() -> None:
                 str(album.apple_music_url) if album.apple_music_url else None,
                 str(album.front_artwork_url) if album.front_artwork_url else None,
                 str(album.rear_artwork_url) if album.rear_artwork_url else None,
-                str(album.bandcamp_player_src) if album.bandcamp_player_src else None,
+                album.bandcamp_player,
             ),
         )
         if cursor.lastrowid:
