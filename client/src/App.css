@@ -4,3 +4,17 @@
   padding: 2rem;
   text-align: center;
 }
+
+.card {
+  width: 18rem;
+  background-color: lightblue;
+  border: none;
+}
+
+.title {
+  color: inherit;
+}
+
+.title:hover {
+  color: darkblue;
+}

@@ -11,7 +11,6 @@ interface AlbumModalProps {
 
 export default function AlbumModal(props: AlbumModalProps) {
   const album = props.album;
-  console.log(album);
   const bandcampPlayer = album.bandcamp_player ? (
     <div
       dangerouslySetInnerHTML={{

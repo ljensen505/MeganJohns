@@ -12,12 +12,7 @@ export default function AlbumCard(props: AlbumCardProps) {
   const album = props.album;
 
   return (
-    <Card
-      key={album.album_id}
-      style={{
-        width: "18rem",
-      }}
-    >
+    <Card key={album.album_id} className="m-2">
       <Button variant="none" onClick={() => setModalShow(true)}>
         <AlbumModal
           album={album}
