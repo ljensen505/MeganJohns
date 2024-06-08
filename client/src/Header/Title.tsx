@@ -1,10 +1,14 @@
 import { Link } from "react-router-dom";
 
-export default function Title() {
+interface TitleProps {
+  name?: string;
+}
+
+export default function Title(props: TitleProps) {
   return (
     <h1>
       <Link className="title" to="/">
-        Megan Johns
+        {props.name ? props.name : "Loading..."}
       </Link>
     </h1>
   );

@@ -4,11 +4,14 @@ from app.constants import (
     ARTICLES_TABLE,
     ARTISTS_TABLE,
     ARTWORK_TABLE,
+    BIO_CONTENT_TABLE,
+    SOCIAL_TABLE,
 )
 from app.db.conn import connect_db
 from app.models.albums import Album, Artist
 from app.models.articles import Article
 from app.models.artwork import Artwork, Medium
+from app.models.bio import Bio, BioParagraph, SocialUrl
 
 # art mediums
 arcylic = Medium(medium_id=0, medium_name="Acrylic on Canvas")
@@ -20,6 +23,65 @@ watercolor = Medium(medium_id=0, medium_name="Watercolor on Paper En Plein Air")
 illustrator_poster = Medium(medium_id=0, medium_name="Illustrator Poster")
 
 mediums = [arcylic, oil, zinc, charcol, rice_paper, watercolor, illustrator_poster]
+
+# Social & Bio information
+socials = [
+    SocialUrl(
+        social_id=0,
+        social_name="itunes",
+        social_url="https://itunes.apple.com/us/artist/megan-johns/74351585",  # type: ignore
+    ),
+    SocialUrl(
+        social_id=0,
+        social_name="facebook",
+        social_url="http://www.facebook.com/meganjohnsmusic",  # type: ignore
+    ),
+    SocialUrl(
+        social_id=0,
+        social_name="soundcloud",
+        social_url="https://soundcloud.com/meganjohns",  # type: ignore
+    ),
+    SocialUrl(
+        social_id=0,
+        social_name="youtube",
+        social_url="http://youtube.com/user/MeganJohnsVideos",  # type: ignore
+    ),
+    SocialUrl(
+        social_id=0,
+        social_name="instagram",
+        social_url="https://instagram.com/meganjohnsmusic/",  # type: ignore
+    ),
+    SocialUrl(
+        social_id=0,
+        social_name="spotify",
+        social_url="https://open.spotify.com/artist/3CTUWD06ndDSuuUUJHm1bf",  # type: ignore
+    ),
+]
+
+bio_content = [
+    BioParagraph(
+        bio_paragraph_id=0,
+        position=1,
+        bio_paragraph="American indie rock singer-songwriter, Megan Johns, originates from a small urban oasis in endless Illinois fields. At age 16, she recorded her first original folk pop album to local acclaim, written secretly in early adolescence.",
+    ),
+    BioParagraph(
+        bio_paragraph_id=0,
+        position=2,
+        bio_paragraph="Johns has performed hundreds of live original shows, including worldwide, supporting Johanna Warren, R. Ring (Kelley Deal, The Breeders), Jenny Owen Youngs, Swooning (Briana Marela), Zion I Crew (with Swords & The Struggle), Liz Cooper (& The Stampede), Lola Kirk, Said The Whale, Angie Heaton, King Washington, and many more.",
+    ),
+    BioParagraph(
+        bio_paragraph_id=0,
+        position=3,
+        bio_paragraph="She has musically collaborated with ‘Zoot Suit Riot’ and Tori Amos Double-Platinum engineer, Billy Barnett (Gung Ho Studio),  Allison Kraus, Hum, Ani DiFranco, and Ludacris engineer, Mark Rubel (Pogo Studio/Blackbird), Adam Schmitt, Mountain Goats bassist, Peter Hughes, Andy Lund, many loved ones, accomplished string and horn players, emcees, and bands.",
+    ),
+    BioParagraph(
+        bio_paragraph_id=0,
+        position=4,
+        bio_paragraph="Based in the Pacific Northwest for the last decade, Johns' mission is to share creativity. She now records her own music and alternatively performs as MoonWish.",
+    ),
+]
+
+bio = Bio(name="Megan Johns", bio=bio_content, social_urls=socials)
 
 # artwork
 # TODO: image urls here are not necessary high-quality and may change
@@ -217,6 +279,8 @@ def drop_tables():
         ARTICLES_TABLE,
         ARTWORK_TABLE,
         ART_MEDIUM_TABLE,
+        BIO_CONTENT_TABLE,
+        SOCIAL_TABLE,
     ]:
         print(f"dropping table: {table}")
         cursor.execute(
@@ -415,6 +479,66 @@ def seed_art_mediums():
     db.close()
 
 
+def seed_bio_content():
+    print(f"seeding {len(bio_content)} bio paragraphs")
+    db = connect_db()
+    cursor = db.cursor()
+    cursor.execute(
+        f"""-- sql
+        CREATE TABLE {BIO_CONTENT_TABLE} (
+            bio_paragraph_id INT NOT NULL AUTO_INCREMENT,
+            position INT NOT NULL UNIQUE,
+            bio_paragraph TEXT,
+            PRIMARY KEY (bio_paragraph_id)
+        );
+        """
+    )
+    for p in bio_content:
+        cursor.execute(
+            f"""-- sql
+            INSERT INTO {BIO_CONTENT_TABLE} (position, bio_paragraph)
+            VALUES (%s, %s);
+            """,
+            (p.position, p.bio_paragraph),
+        )
+        if cursor.lastrowid:
+            p.bio_paragraph_id = cursor.lastrowid
+    db.commit()
+    cursor.close()
+    db.close()
+
+
+def seed_social_info():
+    print(f"seeding {len(socials)} social urls")
+    db = connect_db()
+    cursor = db.cursor()
+
+    cursor.execute(
+        f"""-- sql
+        CREATE TABLE {SOCIAL_TABLE} (
+            social_id INT NOT NULL AUTO_INCREMENT,
+            social_name VARCHAR(255) NOT NULL UNIQUE,
+            social_url VARCHAR(255) NOT NULL UNIQUE,
+            primary key (social_id)
+        );
+        """
+    )
+    for s in socials:
+        cursor.execute(
+            f"""-- sql
+            INSERT INTO {SOCIAL_TABLE} (social_name, social_url)
+            VALUES (%s, %s);
+            """,
+            (s.social_name, str(s.social_url)),
+        )
+        if cursor.lastrowid:
+            s.social_id = cursor.lastrowid
+
+    db.commit()
+    cursor.close()
+    db.close()
+
+
 def main() -> None:
     drop_tables()
     seed_artists()
@@ -422,3 +546,5 @@ def main() -> None:
     seed_articles()
     seed_art_mediums()
     seed_artwork()
+    seed_bio_content()
+    seed_social_info()
