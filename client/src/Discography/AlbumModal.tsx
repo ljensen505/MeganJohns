@@ -2,7 +2,6 @@ import { Modal } from "react-bootstrap";
 import { Album } from "../types/Album";
 import SourceList from "./SourceList/SourceList";
 import AlbumArtwork from "./AlbumArtwork";
-import React from "react";
 
 interface AlbumModalProps {
   album: Album;
