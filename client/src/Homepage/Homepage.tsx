@@ -12,7 +12,6 @@ export default function Homepage(props: HomepageProps) {
   }
   return (
     <>
-      <h4>Homepage placeholder</h4>
       <BioComp bioContent={bio.bio} />
     </>
   );

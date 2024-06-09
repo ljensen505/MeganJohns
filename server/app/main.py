@@ -9,7 +9,7 @@ from app.routers.albums import router as albums_router
 from app.routers.artwork import router as artwork_router
 from app.routers.bio import router as bio_router
 
-origins = ["http://localhost:5173"]
+from .origins import origins
 
 c = Controller()
 app = FastAPI()

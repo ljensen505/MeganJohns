@@ -9,11 +9,11 @@ import Art from "./ArtworkSection/ArtworkSection";
 import Header from "./Header/Header";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Homepage from "./Homepage/Homepage";
-import Title from "./Header/Title";
 import { Bio } from "./types/Bio";
+import { Container } from "react-bootstrap";
 
 function App() {
-  const [mj, setMj] = useState<MeganJohns | null>(null);
+  const [mj, setMj] = useState<MeganJohns | undefined>(undefined);
   const [albums, setAlbums] = useState<Album[]>([]);
   const [artwork, setArtwork] = useState<Artwork[]>([]);
   const [bio, setBio] = useState<Bio | undefined>(undefined);
@@ -39,17 +39,18 @@ function App() {
   }, [mj]);
 
   return (
-    <BrowserRouter>
-      <Title name={mj?.bio.name} />
-      <Header />
-      <Routes>
-        <Route path="/" element={<Homepage bio={bio} />} />
-        <Route path="/music" element={<Discography albums={albums} />} />
-        <Route path="/art" element={<Art allArtwork={artwork} />} />
-      </Routes>
-      {/* <Discography albums={albums} />
+    <Container style={{ maxWidth: "1000px" }}>
+      <BrowserRouter>
+        <Header mj={mj} />
+        <Routes>
+          <Route path="/" element={<Homepage bio={bio} />} />
+          <Route path="/music" element={<Discography albums={albums} />} />
+          <Route path="/art" element={<Art allArtwork={artwork} />} />
+        </Routes>
+        {/* <Discography albums={albums} />
       <Art allArtwork={artwork} /> */}
-    </BrowserRouter>
+      </BrowserRouter>
+    </Container>
   );
 }
 

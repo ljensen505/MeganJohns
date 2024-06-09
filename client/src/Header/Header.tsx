@@ -1,16 +1,22 @@
-import ListGroup from "react-bootstrap/ListGroup";
-import { Link } from "react-router-dom";
+import { MeganJohns } from "../types/MeganJohns";
+import Title from "./Title";
+import NavList from "./NavList";
+import SocialBanner from "./SocialBanner/SocialBanner";
 
-export default function Header() {
+interface HeaderProps {
+  mj?: MeganJohns;
+}
+
+export default function Header(props: HeaderProps) {
+  if (!props.mj) {
+    return <h4>Loading...</h4>;
+  }
+  const mj = props.mj;
   return (
-    <ListGroup horizontal className="justify-content-center mb-4">
-      <ListGroup.Item>
-        <Link to="/music">Music</Link>
-      </ListGroup.Item>
-      <ListGroup.Item>
-        <Link to="/art">Art</Link>
-      </ListGroup.Item>
-      <ListGroup.Item>News</ListGroup.Item>
-    </ListGroup>
+    <>
+      <SocialBanner socials={mj.bio.social_urls} />
+      <Title name={mj.bio.name} />
+      <NavList />
+    </>
   );
 }
