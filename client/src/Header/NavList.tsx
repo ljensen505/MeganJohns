@@ -5,6 +5,9 @@ export default function NavList() {
   return (
     <ListGroup horizontal className="justify-content-center mb-4">
       <ListGroup.Item>
+        <Link to="/">About</Link>
+      </ListGroup.Item>
+      <ListGroup.Item>
         <Link to="/music">Music</Link>
       </ListGroup.Item>
       <ListGroup.Item>

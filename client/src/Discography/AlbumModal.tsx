@@ -2,6 +2,7 @@ import { Modal } from "react-bootstrap";
 import { Album } from "../types/Album";
 import SourceList from "./SourceList/SourceList";
 import AlbumArtwork from "./AlbumArtwork";
+import React from "react";
 
 interface AlbumModalProps {
   album: Album;
@@ -19,20 +20,18 @@ export default function AlbumModal(props: AlbumModalProps) {
     />
   ) : null;
 
+  const handleClose = () => {
+    props.onHide();
+  };
+
   return (
-    <Modal
-      {...props}
-      size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
-      centered
-    >
+    <Modal {...props} onHide={handleClose} size="lg" centered>
       <Modal.Header closeButton>
         <Modal.Title id={`{album.album_name}-modal`}>
           {album.album_name}
         </Modal.Title>
       </Modal.Header>
       <AlbumArtwork album={album} />
-
       <Modal.Body>
         <SourceList album={album} />
         {bandcampPlayer}

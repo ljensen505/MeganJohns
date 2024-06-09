@@ -38,6 +38,10 @@ function App() {
     }
   }, [mj]);
 
+  if (!mj || !bio) {
+    return <h4>Loading...</h4>;
+  }
+
   return (
     <Container style={{ maxWidth: "1000px" }}>
       <BrowserRouter>
@@ -47,8 +51,6 @@ function App() {
           <Route path="/music" element={<Discography albums={albums} />} />
           <Route path="/art" element={<Art allArtwork={artwork} />} />
         </Routes>
-        {/* <Discography albums={albums} />
-      <Art allArtwork={artwork} /> */}
       </BrowserRouter>
     </Container>
   );

@@ -1,7 +1,4 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
   text-align: center;
 }
 
@@ -17,4 +14,12 @@
 
 .title:hover {
   color: darkblue;
+}
+
+#global-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: gray;
+  opacity: 0.9;
 }
