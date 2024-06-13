@@ -7,7 +7,7 @@ import { Artwork } from "./types/Artwork";
 import Discography from "./Discography/Discography";
 import Art from "./ArtworkSection/ArtworkSection";
 import Header from "./Header/Header";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import Homepage from "./Homepage/Homepage";
 import { Bio } from "./types/Bio";
 import { Container } from "react-bootstrap";
