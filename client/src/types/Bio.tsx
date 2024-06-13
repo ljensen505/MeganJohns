@@ -10,26 +10,16 @@ class SocialUrl {
   }
 }
 
-class BioParagraph {
-  bio_paragraph_id: number;
-  bio_paragraph: string;
-
-  constructor(bio_paragraph_id: number, bio_paragraph: string) {
-    this.bio_paragraph_id = bio_paragraph_id;
-    this.bio_paragraph = bio_paragraph;
-  }
-}
-
 class Bio {
   name: string;
-  bio: BioParagraph[];
+  bio: string;
   social_urls: SocialUrl[];
 
-  constructor(name: string, bio: BioParagraph[], social_urls: SocialUrl[]) {
+  constructor(name: string, bio: string, social_urls: SocialUrl[]) {
     this.name = name;
     this.bio = bio;
     this.social_urls = social_urls;
   }
 }
 
-export { Bio, BioParagraph, SocialUrl };
+export { Bio, SocialUrl };

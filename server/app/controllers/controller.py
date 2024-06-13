@@ -2,7 +2,7 @@ from icecream import ic
 
 from app.models.albums import Album, Artist
 from app.models.artwork import Artwork, Medium
-from app.models.bio import Bio, BioParagraph, SocialUrl
+from app.models.bio import Bio, SocialUrl
 from app.queries.albums import AlbumsQueries
 from app.queries.artwork import ArtworkQueries
 from app.queries.bio import BioQueries
@@ -22,7 +22,7 @@ class Controller:
 
     async def get_bio(self) -> Bio:
         bio_content = self._get_all_bio_content()
-        bio_content.sort(key=lambda p: p.position)
+
         return Bio(
             name="Megan Johns",
             bio=bio_content,
@@ -32,8 +32,9 @@ class Controller:
     def _get_all_social(self) -> list[SocialUrl]:
         return [SocialUrl(**row) for row in self.bio_queries.get_all_social()]
 
-    def _get_all_bio_content(self) -> list[BioParagraph]:
-        return [BioParagraph(**row) for row in self.bio_queries.get_all_bio_content()]
+    def _get_all_bio_content(self) -> str:
+        bio_row = self.bio_queries.get_all_bio_content()
+        return bio_row.get("content", "")
 
     async def get_all_albums(self) -> list[Album]:
         albums: list[Album] = []

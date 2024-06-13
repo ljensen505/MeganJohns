@@ -1,3 +1,5 @@
+from pathlib import Path
+
 from app.constants import (
     ALBUMS_TABLE,
     ART_MEDIUM_TABLE,
@@ -11,7 +13,7 @@ from app.db.conn import connect_db
 from app.models.albums import Album, Artist
 from app.models.articles import Article
 from app.models.artwork import Artwork, Medium
-from app.models.bio import Bio, BioParagraph, SocialUrl
+from app.models.bio import Bio, SocialUrl
 
 # art mediums
 arcylic = Medium(medium_id=0, medium_name="Acrylic on Canvas")
@@ -58,30 +60,15 @@ socials = [
     ),
 ]
 
-bio_content = [
-    BioParagraph(
-        bio_paragraph_id=0,
-        position=1,
-        bio_paragraph="American indie rock singer-songwriter, Megan Johns, originates from a small urban oasis in endless Illinois fields. At age 16, she recorded her first original folk pop album to local acclaim, written secretly in early adolescence.",
-    ),
-    BioParagraph(
-        bio_paragraph_id=0,
-        position=2,
-        bio_paragraph="Johns has performed hundreds of live original shows, including worldwide, supporting Johanna Warren, R. Ring (Kelley Deal, The Breeders), Jenny Owen Youngs, Swooning (Briana Marela), Zion I Crew (with Swords & The Struggle), Liz Cooper (& The Stampede), Lola Kirk, Said The Whale, Angie Heaton, King Washington, and many more.",
-    ),
-    BioParagraph(
-        bio_paragraph_id=0,
-        position=3,
-        bio_paragraph="She has musically collaborated with ‘Zoot Suit Riot’ and Tori Amos Double-Platinum engineer, Billy Barnett (Gung Ho Studio),  Allison Kraus, Hum, Ani DiFranco, and Ludacris engineer, Mark Rubel (Pogo Studio/Blackbird), Adam Schmitt, Mountain Goats bassist, Peter Hughes, Andy Lund, many loved ones, accomplished string and horn players, emcees, and bands.",
-    ),
-    BioParagraph(
-        bio_paragraph_id=0,
-        position=4,
-        bio_paragraph="Based in the Pacific Northwest for the last decade, Johns' mission is to share creativity. She now records her own music and alternatively performs as MoonWish.",
-    ),
-]
+bio_html_content = ""
 
-bio = Bio(name="Megan Johns", bio=bio_content, social_urls=socials)
+ROOT_DIR = Path(__file__).parent
+HTML_FILE = ROOT_DIR / "bio.html"
+with open(HTML_FILE, "r") as html_file:
+    for line in html_file.readlines():
+        bio_html_content += line.strip()
+
+bio = Bio(name="Megan Johns", bio=bio_html_content, social_urls=socials)
 
 # artwork
 # TODO: image urls here are not necessary high-quality and may change
@@ -479,35 +466,6 @@ def seed_art_mediums():
     db.close()
 
 
-def seed_bio_content():
-    print(f"seeding {len(bio_content)} bio paragraphs")
-    db = connect_db()
-    cursor = db.cursor()
-    cursor.execute(
-        f"""-- sql
-        CREATE TABLE {BIO_CONTENT_TABLE} (
-            bio_paragraph_id INT NOT NULL AUTO_INCREMENT,
-            position INT NOT NULL UNIQUE,
-            bio_paragraph TEXT,
-            PRIMARY KEY (bio_paragraph_id)
-        );
-        """
-    )
-    for p in bio_content:
-        cursor.execute(
-            f"""-- sql
-            INSERT INTO {BIO_CONTENT_TABLE} (position, bio_paragraph)
-            VALUES (%s, %s);
-            """,
-            (p.position, p.bio_paragraph),
-        )
-        if cursor.lastrowid:
-            p.bio_paragraph_id = cursor.lastrowid
-    db.commit()
-    cursor.close()
-    db.close()
-
-
 def seed_social_info():
     print(f"seeding {len(socials)} social urls")
     db = connect_db()
@@ -539,6 +497,33 @@ def seed_social_info():
     db.close()
 
 
+def seed_bio():
+    print(f"seeding single bio")
+    db = connect_db()
+    cursor = db.cursor()
+
+    cursor.execute(
+        f"""-- sql
+        CREATE TABLE {BIO_CONTENT_TABLE} (
+            bio_id INT NOT NULL AUTO_INCREMENT,
+            content TEXT NOT NULL,
+            primary key (bio_id)
+        );
+        """
+    )
+    cursor.execute(
+        f"""-- sql
+        INSERT INTO {BIO_CONTENT_TABLE} (content)
+        VALUES (%s);
+        """,
+        (bio.bio,),
+    )
+
+    db.commit()
+    cursor.close()
+    db.close()
+
+
 def main() -> None:
     drop_tables()
     seed_artists()
@@ -546,5 +531,5 @@ def main() -> None:
     seed_articles()
     seed_art_mediums()
     seed_artwork()
-    seed_bio_content()
     seed_social_info()
+    seed_bio()

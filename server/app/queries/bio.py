@@ -18,13 +18,14 @@ class BioQueries(BaseQueries):
         self.close_cursor_and_conn(cursor, conn)
         return rows
 
-    def get_all_bio_content(self) -> list[dict]:
+    def get_all_bio_content(self) -> dict:
         cursor, conn = self.get_cursor_and_conn()
         cursor.execute(
             f"""-- sql
             SELECT * FROM {self.bio_content_table}
-            """
+            WHERE bio_id = 1;
+            """  # hardcoded because only one bio in table
         )
-        rows: list[dict] = cursor.fetchall()  # type: ignore
+        row: dict = cursor.fetchone()  # type: ignore
         self.close_cursor_and_conn(cursor, conn)
-        return rows
+        return row

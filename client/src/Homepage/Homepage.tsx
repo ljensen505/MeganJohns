@@ -1,5 +1,5 @@
+import { Container } from "react-bootstrap";
 import { Bio } from "../types/Bio";
-import BioComp from "./BioComp";
 
 interface HomepageProps {
   bio: Bio;
@@ -7,10 +7,17 @@ interface HomepageProps {
 
 export default function Homepage(props: HomepageProps) {
   const bio = props.bio;
+  const bioHTML = () => {
+    return { __html: bio.bio };
+  };
+  console.log(bioHTML());
 
   return (
     <>
-      <BioComp bioContent={bio.bio} />
+      {/* <div dangerouslySetInnerHTML={bioHTML()} /> */}
+      <Container id="home">
+        <div dangerouslySetInnerHTML={bioHTML()} />
+      </Container>
     </>
   );
 }

@@ -46,11 +46,17 @@ function App() {
     <Container style={{ maxWidth: "1000px" }}>
       <BrowserRouter>
         <Header mj={mj} />
-        <Routes>
+        {/* <Routes>
           <Route path="/" element={<Homepage bio={bio} />} />
-          <Route path="/music" element={<Discography albums={albums} />} />
+          <Route
+            path="#discography"
+            element={<Discography albums={albums} />}
+          />
           <Route path="/art" element={<Art allArtwork={artwork} />} />
-        </Routes>
+        </Routes> */}
+        <Homepage bio={bio} />
+        <Discography albums={albums} />
+        <Art allArtwork={artwork} />
       </BrowserRouter>
     </Container>
   );

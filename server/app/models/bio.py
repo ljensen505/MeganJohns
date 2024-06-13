@@ -7,13 +7,7 @@ class SocialUrl(BaseModel):
     social_url: HttpUrl
 
 
-class BioParagraph(BaseModel):
-    bio_paragraph_id: int
-    position: int  # 1-based index for Bio's bio array. To be used in sorting.
-    bio_paragraph: str  # a single paragraph to be rendered as a <p>
-
-
 class Bio(BaseModel):
     name: str
-    bio: list[BioParagraph]
+    bio: str
     social_urls: list[SocialUrl]
