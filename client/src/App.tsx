@@ -7,7 +7,6 @@ import { Artwork } from "./types/Artwork";
 import Discography from "./Discography/Discography";
 import Art from "./ArtworkSection/ArtworkSection";
 import Header from "./Header/Header";
-import { BrowserRouter } from "react-router-dom";
 import Homepage from "./Homepage/Homepage";
 import { Bio } from "./types/Bio";
 import { Container } from "react-bootstrap";
@@ -31,7 +30,6 @@ function App() {
 
   useEffect(() => {
     if (mj) {
-      console.log(mj);
       setAlbums(mj.albums);
       setArtwork(mj.artwork);
       setBio(mj.bio);
@@ -44,20 +42,10 @@ function App() {
 
   return (
     <Container style={{ maxWidth: "1000px" }}>
-      <BrowserRouter>
-        <Header mj={mj} />
-        {/* <Routes>
-          <Route path="/" element={<Homepage bio={bio} />} />
-          <Route
-            path="#discography"
-            element={<Discography albums={albums} />}
-          />
-          <Route path="/art" element={<Art allArtwork={artwork} />} />
-        </Routes> */}
-        <Homepage bio={bio} />
-        <Discography albums={albums} />
-        <Art allArtwork={artwork} />
-      </BrowserRouter>
+      <Header mj={mj} />
+      <Homepage bio={bio} />
+      <Discography albums={albums} />
+      <Art allArtwork={artwork} />
     </Container>
   );
 }

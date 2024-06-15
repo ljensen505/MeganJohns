@@ -1,21 +1,18 @@
 import { Album } from "../types/Album";
-import { Container, Row } from "react-bootstrap";
-import AlbumCard from "./AlbumCard";
+import { Container } from "react-bootstrap";
+import MjCarousel from "../MjCarousel/MjCarousel";
 
 interface DiscographyProps {
   albums: Album[];
 }
 
 export default function Discography(props: DiscographyProps) {
+  console.log(props.albums);
   return (
     <>
       <h2 id="discography">Discography</h2>
       <Container>
-        <Row className="justify-content-center">
-          {props.albums.map((album) => (
-            <AlbumCard key={album.album_id} album={album} />
-          ))}
-        </Row>
+        <MjCarousel works={props.albums} />
       </Container>
     </>
   );

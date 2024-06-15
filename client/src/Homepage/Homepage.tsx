@@ -10,7 +10,6 @@ export default function Homepage(props: HomepageProps) {
   const bioHTML = () => {
     return { __html: bio.bio };
   };
-  console.log(bioHTML());
 
   return (
     <>
