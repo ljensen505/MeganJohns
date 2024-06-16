@@ -8,6 +8,7 @@ from app.models.meganjohns import MeganJohns
 from app.routers.albums import router as albums_router
 from app.routers.artwork import router as artwork_router
 from app.routers.bio import router as bio_router
+from app.routers.quotes import router as quotes_router
 
 from .origins import origins
 
@@ -17,6 +18,7 @@ app = FastAPI()
 app.include_router(albums_router)
 app.include_router(artwork_router)
 app.include_router(bio_router)
+app.include_router(quotes_router)
 
 app.add_middleware(
     CORSMiddleware,
@@ -29,7 +31,7 @@ app.add_middleware(
 
 @app.get("/")
 async def root() -> MeganJohns:
-    albums, artwork, bio = await gather(
-        c.get_all_albums(), c.get_all_artwork(), c.get_bio()
+    albums, artwork, bio, quotes = await gather(
+        c.get_all_albums(), c.get_all_artwork(), c.get_bio(), c.get_all_quotes()
     )
-    return MeganJohns(albums=albums, artwork=artwork, bio=bio)
+    return MeganJohns(albums=albums, artwork=artwork, quotes=quotes, bio=bio)

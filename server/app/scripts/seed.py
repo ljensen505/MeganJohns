@@ -1,5 +1,8 @@
 from pathlib import Path
 
+from mysql.connector import MySQLConnection
+from mysql.connector.cursor import MySQLCursor
+
 from app.constants import (
     ALBUMS_TABLE,
     ART_MEDIUM_TABLE,
@@ -7,6 +10,7 @@ from app.constants import (
     ARTISTS_TABLE,
     ARTWORK_TABLE,
     BIO_CONTENT_TABLE,
+    QUOTES_TABLE,
     SOCIAL_TABLE,
 )
 from app.db.conn import connect_db
@@ -14,6 +18,38 @@ from app.models.albums import Album, Artist
 from app.models.articles import Article
 from app.models.artwork import Artwork, Medium
 from app.models.bio import Bio, SocialUrl
+from app.models.quotes import Quote
+
+# quotes
+quotes = [
+    Quote(
+        quote_id=0,
+        body="Something like Trent Reznor taking over the Smashing Pumpkins and replacing Corgan with Tori Amos.",
+        author="Middle Tennessee Music",
+        source="https://www.indiemusicdiscovery.com/megan-johns-says-hey-lonely/",  # type: ignore
+    ),
+    Quote(
+        quote_id=0,
+        body="Melodic and hypnotizing. | Best Local Singer-Songwriter 2013",
+        author="Smile Politely",
+        source="http://www.smilepolitely.com/music/best_music_2013/",  # type: ignore
+    ),
+    Quote(
+        quote_id=0,
+        body="Tight aggressive power chords underpin Johns's raspy yet melodic singing voice, telling a story in impressionistic fragments rather than a single narrative.",
+        author="Eugene Magazine",
+    ),
+    Quote(
+        quote_id=0,
+        body="Johns creates music that is at once sweet and biting: the languid tone of her voice providing a perfect lace overlay to the harder-rocking arrangements beneath them.",
+        author="The News Gazette",
+    ),
+    Quote(
+        quote_id=0,
+        body="She lures her listeners to unearth a deeper subconscious level.",
+        author="The Buzz Weekly",
+    ),
+]
 
 # art mediums
 arcylic = Medium(medium_id=0, medium_name="Acrylic on Canvas")
@@ -257,9 +293,20 @@ albums: list[Album] = [
 ]
 
 
-def drop_tables():
+def get_db_cursor() -> tuple[MySQLConnection, MySQLCursor]:
     db = connect_db()
     cursor = db.cursor()
+    return db, cursor
+
+
+def close_db_cursor(db: MySQLConnection, cursor: MySQLCursor) -> None:
+    db.commit()
+    cursor.close()
+    db.close()
+
+
+def drop_tables():
+    db, cursor = get_db_cursor()
     for table in [
         ALBUMS_TABLE,
         ARTISTS_TABLE,
@@ -268,6 +315,7 @@ def drop_tables():
         ART_MEDIUM_TABLE,
         BIO_CONTENT_TABLE,
         SOCIAL_TABLE,
+        QUOTES_TABLE,
     ]:
         print(f"dropping table: {table}")
         cursor.execute(
@@ -275,16 +323,13 @@ def drop_tables():
         DROP TABLE IF EXISTS {table};
         """
         )
-    db.commit()
-    cursor.close()
-    db.close()
+    close_db_cursor(db, cursor)
     print("")
 
 
 def seed_albums() -> None:
     print(f"seeding {len(albums)} albums")
-    db = connect_db()
-    cursor = db.cursor()
+    db, cursor = get_db_cursor()
 
     cursor.execute(
         f"""-- sql
@@ -331,10 +376,37 @@ def seed_albums() -> None:
     db.close()
 
 
+def seed_quotes() -> None:
+    print(f"seeding {len(quotes)} quotes")
+    db, cursor = get_db_cursor()
+
+    cursor.execute(
+        f"""-- sql
+        CREATE TABLE {QUOTES_TABLE} (
+            quote_id INT NOT NULL AUTO_INCREMENT,
+            body VARCHAR(1000) NOT NULL,
+            author VARCHAR(255) NOT NULL,
+            source VARCHAR(255),
+            PRIMARY KEY (quote_id)
+        );
+        """
+    )
+    for quote in quotes:
+        cursor.execute(
+            f"""-- sql
+            INSERT INTO {QUOTES_TABLE} (body, author, source)
+            VALUES (%s, %s, %s);
+            """,
+            (quote.body, quote.author, str(quote.source) if quote.source else None),
+        )
+        if cursor.lastrowid:
+            quote.quote_id = cursor.lastrowid
+    close_db_cursor(db, cursor)
+
+
 def seed_artists() -> None:
     print(f"seeding {len(artists)} artists")
-    db = connect_db()
-    cursor = db.cursor()
+    db, cursor = get_db_cursor()
 
     cursor.execute(
         f"""-- sql
@@ -356,9 +428,7 @@ def seed_artists() -> None:
         )
         if cursor.lastrowid:
             artist.artist_id = cursor.lastrowid
-    db.commit()
-    cursor.close()
-    db.close()
+    close_db_cursor(db, cursor)
 
 
 def seed_articles():
@@ -533,3 +603,4 @@ def main() -> None:
     seed_artwork()
     seed_social_info()
     seed_bio()
+    seed_quotes()

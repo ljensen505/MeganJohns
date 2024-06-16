@@ -13,6 +13,9 @@ export default function NavList() {
       <ListGroup.Item>
         <a href="#artwork">Art</a>
       </ListGroup.Item>
+      <ListGroup.Item>
+        <a href="#quotes">Quotes</a>
+      </ListGroup.Item>
       <ListGroup.Item disabled>News</ListGroup.Item>
     </ListGroup>
   );

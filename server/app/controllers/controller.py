@@ -3,9 +3,11 @@ from icecream import ic
 from app.models.albums import Album, Artist
 from app.models.artwork import Artwork, Medium
 from app.models.bio import Bio, SocialUrl
+from app.models.quotes import Quote
 from app.queries.albums import AlbumsQueries
 from app.queries.artwork import ArtworkQueries
 from app.queries.bio import BioQueries
+from app.queries.quotes import QuotesQueries
 
 
 class Controller:
@@ -13,12 +15,16 @@ class Controller:
         self.album_queries = AlbumsQueries()
         self.artwork_queries = ArtworkQueries()
         self.bio_queries = BioQueries()
+        self.quote_queries = QuotesQueries()
 
     def _pad_year(self, release_year) -> str:
         release_year = str(release_year)
         while len(release_year) < 4:
             release_year += "0"
         return release_year
+
+    async def get_all_quotes(self) -> list[Quote]:
+        return [Quote(**q) for q in self.quote_queries.get_all()]
 
     async def get_bio(self) -> Bio:
         bio_content = self._get_all_bio_content()

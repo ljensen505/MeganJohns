@@ -2,6 +2,7 @@ import axios from "axios";
 import { MeganJohns } from "./types/MeganJohns";
 import { Album } from "./types/Album";
 import { Artwork } from "./types/Artwork";
+import { Quote } from "./types/Quote";
 
 const baseURL = import.meta.env.VITE_API_URL as string;
 
@@ -11,8 +12,13 @@ export const getMeganJohns = async (): Promise<MeganJohns> => {
   const response = await api.get<MeganJohns>("/");
   const albums = response.data.albums.map(constructAlbum);
   const artwork = response.data.artwork.map(constructArtwork);
-  return new MeganJohns(albums, artwork, response.data.bio);
+  const quotes = response.data.quotes.map(constructQuote);
+  return new MeganJohns(albums, artwork, quotes, response.data.bio);
 };
+
+function constructQuote(data: Quote): Quote {
+  return new Quote(data.quotes_id, data.body, data.author, data.source);
+}
 
 function constructAlbum(data: Album): Album {
   return new Album(
