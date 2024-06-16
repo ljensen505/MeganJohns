@@ -6,9 +6,9 @@
 .social-icon {
   background-color: inherit;
   border: inherit;
-  color: black;
+  color: var(--mj-gray);
 }
 
 .social-icon:hover {
-  color: #535bf2;
+  color: var(--mj-dark-teal);
 }

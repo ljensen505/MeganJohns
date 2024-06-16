@@ -1,0 +1,5 @@
+.list-group-item,
+.list-group-item.disabled {
+  background-color: transparent;
+  border: none;
+}

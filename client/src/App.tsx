@@ -4,10 +4,9 @@ import "./App.css";
 import { MeganJohns } from "./types/MeganJohns";
 import { Album } from "./types/Album";
 import { Artwork } from "./types/Artwork";
-import Discography from "./Discography/Discography";
-import Art from "./ArtworkSection/ArtworkSection";
+import MjSection from "./MjSection";
 import Header from "./Header/Header";
-import Homepage from "./Homepage/Homepage";
+import About from "./About/Homepage";
 import { Bio } from "./types/Bio";
 import { Container } from "react-bootstrap";
 
@@ -43,9 +42,9 @@ function App() {
   return (
     <Container style={{ maxWidth: "1000px" }}>
       <Header mj={mj} />
-      <Homepage bio={bio} />
-      <Discography albums={albums} />
-      <Art allArtwork={artwork} />
+      <About bio={bio} />
+      <MjSection sectionTitle="discography" works={albums} />
+      <MjSection sectionTitle="artwork" works={artwork} />
     </Container>
   );
 }

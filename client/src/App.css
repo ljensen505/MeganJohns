@@ -4,22 +4,19 @@
 
 .card {
   width: 18rem;
-  background-color: lightblue;
+  background-color: inherit;
   border: none;
-}
-
-.title {
-  color: inherit;
-}
-
-.title:hover {
-  color: darkblue;
 }
 
 #global-header {
   position: sticky;
   top: 0;
   z-index: 1000;
-  background-color: gray;
-  opacity: 0.9;
+  background-color: var(--mj-light-blue);
+}
+
+.content-section {
+  padding-top: 10em;
+  margin-top: -10em;
+  margin-bottom: 10em;
 }
