@@ -3,7 +3,7 @@ import "./Header.css";
 
 export default function NavList() {
   return (
-    <ListGroup horizontal className="justify-content-center mb-4">
+    <ListGroup horizontal className="justify-content-center">
       <ListGroup.Item>
         <a href="#root">About</a>
       </ListGroup.Item>
