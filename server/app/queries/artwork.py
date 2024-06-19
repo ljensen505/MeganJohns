@@ -11,9 +11,18 @@ class ArtworkQueries(BaseQueries):
         cursor, conn = self.get_cursor_and_conn()
         cursor.execute(
             f"""-- sql
-            SELECT * FROM {self.artwork_table} a
+            SELECT 
+                a.id,
+                a.medium_id ,
+                a.artwork_name ,
+                a.source_url ,
+                a.release_year ,
+                a.`size` ,
+                m.id as medium_id,
+                m.medium_name
+            FROM {self.artwork_table} a
             INNER JOIN {self.medium_table} m
-            ON a.medium_id = m.medium_id
+            ON a.medium_id = m.id
             """
         )
         rows: list[dict] = cursor.fetchall()  # type: ignore

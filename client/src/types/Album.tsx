@@ -1,20 +1,21 @@
 class Artist {
-  artist_id: number;
+  id: number;
   artist_name: string;
   artist_url?: string;
 
-  constructor(artist_id: number, artist_name: string, artist_url?: string) {
-    this.artist_id = artist_id;
+  constructor(id: number, artist_name: string, artist_url?: string) {
+    this.id = id;
     this.artist_name = artist_name;
     this.artist_url = artist_url;
   }
 }
 
 class Album {
-  album_id: number;
+  id: number;
   album_name: string;
   release_year: number;
   artist: Artist;
+  type: string = "album";
   spotify_url?: string;
   itunes_url?: string;
   bandcamp_url?: string;
@@ -24,7 +25,7 @@ class Album {
   bandcamp_player?: string;
 
   constructor(
-    album_id: number,
+    id: number,
     album_name: string,
     release_year: number,
     artist: Artist,
@@ -36,7 +37,8 @@ class Album {
     rear_artwork_url?: string,
     bandcamp_player_src?: string
   ) {
-    this.album_id = album_id;
+    this.id = id;
+    this.type = "album";
     this.album_name = album_name;
     this.release_year = release_year;
     this.artist = artist;

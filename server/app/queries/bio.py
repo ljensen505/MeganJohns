@@ -23,7 +23,7 @@ class BioQueries(BaseQueries):
         cursor.execute(
             f"""-- sql
             SELECT * FROM {self.bio_content_table}
-            WHERE bio_id = 1;
+            WHERE id = 1;
             """  # hardcoded because only one bio in table
         )
         row: dict = cursor.fetchone()  # type: ignore

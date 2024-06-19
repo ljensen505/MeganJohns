@@ -2,10 +2,11 @@ import { Album } from "./types/Album";
 import { Container } from "react-bootstrap";
 import MjCarousel from "./MjCarousel/MjCarousel";
 import { Artwork } from "./types/Artwork";
+import { Video } from "./types/Video";
 
 interface MjSectionProps {
   sectionTitle: string;
-  works: Album[] | Artwork[];
+  works: Album[] | Artwork[] | Video[];
 }
 
 export default function MjSection(props: MjSectionProps) {

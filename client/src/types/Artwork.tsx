@@ -9,7 +9,8 @@ class Medium {
 }
 
 class Artwork {
-  artwork_id: number;
+  id: number;
+  type: string = "artwork";
   artwork_name: string;
   medium: Medium;
   source_url: string;
@@ -17,14 +18,15 @@ class Artwork {
   size?: string;
 
   constructor(
-    artwork_id: number,
+    id: number,
     artwork_name: string,
     medium: Medium,
     source_url: string,
     release_year: string,
     size?: string
   ) {
-    this.artwork_id = artwork_id;
+    this.id = id;
+    this.type = "artwork";
     this.artwork_name = artwork_name;
     this.medium = medium;
     this.source_url = source_url;

@@ -9,6 +9,7 @@ from app.routers.albums import router as albums_router
 from app.routers.artwork import router as artwork_router
 from app.routers.bio import router as bio_router
 from app.routers.quotes import router as quotes_router
+from app.routers.videos import router as videos_router
 
 from .origins import origins
 
@@ -19,6 +20,7 @@ app.include_router(albums_router)
 app.include_router(artwork_router)
 app.include_router(bio_router)
 app.include_router(quotes_router)
+app.include_router(videos_router)
 
 app.add_middleware(
     CORSMiddleware,
@@ -31,7 +33,13 @@ app.add_middleware(
 
 @app.get("/")
 async def root() -> MeganJohns:
-    albums, artwork, bio, quotes = await gather(
-        c.get_all_albums(), c.get_all_artwork(), c.get_bio(), c.get_all_quotes()
+    albums, artwork, bio, quotes, videos = await gather(
+        c.get_all_albums(),
+        c.get_all_artwork(),
+        c.get_bio(),
+        c.get_all_quotes(),
+        c.get_all_videos(),
     )
-    return MeganJohns(albums=albums, artwork=artwork, quotes=quotes, bio=bio)
+    return MeganJohns(
+        albums=albums, artwork=artwork, quotes=quotes, videos=videos, bio=bio
+    )

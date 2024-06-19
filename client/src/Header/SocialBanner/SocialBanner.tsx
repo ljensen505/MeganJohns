@@ -31,7 +31,7 @@ export default function SocialBanner(props: SocialBannerProps) {
     <Container>
       <ListGroup horizontal className="justify-content-center">
         {socials.map((social) => (
-          <ListGroup.Item key={social.social_id} className="social-icon">
+          <ListGroup.Item key={social.id} className="social-icon">
             <a href={social.social_url}>
               <FontAwesomeIcon
                 icon={socialIconMap[social.social_name]}

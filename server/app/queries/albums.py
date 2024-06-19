@@ -9,12 +9,25 @@ class AlbumsQueries(BaseQueries):
 
     def get_all(self) -> list[dict]:
         cursor, conn = self.get_cursor_and_conn()
-        # TODO: this will need a join
         cursor.execute(
             f"""-- sql
-            SELECT * FROM {self.albums_table}
-            INNER JOIN {self.artists_table}
-            ON {self.albums_table}.artist_id = {self.artists_table}.artist_id
+            SELECT
+                	al.id,
+                    al.album_name ,
+                    al.release_year,
+                    al.artist_id ,
+                    al.spotify_url ,
+                    al.itunes_url ,
+                    al.bandcamp_url ,
+                    al.apple_music_url ,
+                    al.front_artwork_url ,
+                    al.rear_artwork_url ,
+                    al.bandcamp_player ,
+                    ar.artist_name ,
+                    ar.artist_url
+            FROM {self.albums_table} al
+            INNER JOIN {self.artists_table} ar
+            ON al.artist_id = ar.id
             """
         )
         data: list[dict] = cursor.fetchall()  # type: ignore

@@ -4,7 +4,7 @@ from pydantic import BaseModel, HttpUrl
 
 
 class Quote(BaseModel):
-    quote_id: int
+    id: int
     body: str
     author: str
     source: Optional[HttpUrl] = None

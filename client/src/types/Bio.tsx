@@ -1,10 +1,10 @@
 class SocialUrl {
-  social_id: number;
+  id: number;
   social_name: string;
   social_url: string;
 
-  constructor(social_id: number, social_name: string, social_url: string) {
-    this.social_id = social_id;
+  constructor(id: number, social_name: string, social_url: string) {
+    this.id = id;
     this.social_name = social_name;
     this.social_url = social_url;
   }

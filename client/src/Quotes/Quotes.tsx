@@ -11,7 +11,7 @@ export default function Quotes(props: QuotesProps) {
       <h2>Quotes</h2>
       {props.quotes.map((quote) => (
         <QuoteElement
-          key={quote.quotes_id}
+          key={quote.id}
           body={quote.body}
           author={quote.author}
           source_url={quote.source}

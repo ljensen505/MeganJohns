@@ -11,6 +11,7 @@ import { Bio } from "./types/Bio";
 import { Container } from "react-bootstrap";
 import { Quote } from "./types/Quote";
 import Quotes from "./Quotes/Quotes";
+import { Video } from "./types/Video";
 
 function App() {
   const [mj, setMj] = useState<MeganJohns | undefined>(undefined);
@@ -18,6 +19,7 @@ function App() {
   const [artwork, setArtwork] = useState<Artwork[]>([]);
   const [bio, setBio] = useState<Bio | undefined>(undefined);
   const [quotes, setQuotes] = useState<Quote[]>([]);
+  const [videos, setVideos] = useState<Video[]>([]);
 
   useEffect(() => {
     getMeganJohns().then(
@@ -37,6 +39,7 @@ function App() {
       setArtwork(mj.artwork);
       setBio(mj.bio);
       setQuotes(mj.quotes);
+      setVideos(mj.videos);
     }
   }, [mj]);
 
@@ -50,6 +53,7 @@ function App() {
       <About bio={bio} />
       <MjSection sectionTitle="discography" works={albums} />
       <MjSection sectionTitle="artwork" works={artwork} />
+      <MjSection sectionTitle="videos" works={videos} />
       <Quotes quotes={quotes} />
     </Container>
   );

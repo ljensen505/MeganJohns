@@ -1,16 +1,11 @@
 class Quote {
-  quotes_id: number;
+  id: number;
   body: string;
   author: string;
   source?: string;
 
-  constructor(
-    quotes_id: number,
-    body: string,
-    author: string,
-    source?: string
-  ) {
-    this.quotes_id = quotes_id;
+  constructor(id: number, body: string, author: string, source?: string) {
+    this.id = id;
     this.body = body;
     this.author = author;
     this.source = source;

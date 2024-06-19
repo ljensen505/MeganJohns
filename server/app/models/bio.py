@@ -2,7 +2,7 @@ from pydantic import BaseModel, HttpUrl
 
 
 class SocialUrl(BaseModel):
-    social_id: int
+    id: int
     social_name: str
     social_url: HttpUrl
 

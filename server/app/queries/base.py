@@ -10,6 +10,7 @@ from app.constants import (
     BIO_CONTENT_TABLE,
     QUOTES_TABLE,
     SOCIAL_TABLE,
+    VIDEOS_TABLE,
 )
 from app.db.conn import connect_db
 
@@ -24,6 +25,7 @@ class BaseQueries:
         self.social_table = SOCIAL_TABLE
         self.bio_content_table = BIO_CONTENT_TABLE
         self.quotes_table = QUOTES_TABLE
+        self.videos_table = VIDEOS_TABLE
 
     def get_cursor_and_conn(self) -> tuple[MySQLCursor, MySQLConnection]:
         conn = connect_db()
