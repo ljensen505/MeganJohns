@@ -4,14 +4,14 @@ class Video {
   title: string;
   subtitle: string;
   description: string;
-  youtube_player?: string;
+  youtube_player: string;
 
   constructor(
     id: number,
     title: string,
     subtitle: string,
     description: string,
-    youtube_player?: string
+    youtube_player: string
   ) {
     this.id = id;
     this.type = "video";

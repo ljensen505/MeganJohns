@@ -74,5 +74,4 @@ class Controller:
             row["medium"] = medium
             artwork.append(Artwork(**row))
         artwork.sort(key=lambda work: work.release_year, reverse=True)
-        ic(artwork)
         return artwork

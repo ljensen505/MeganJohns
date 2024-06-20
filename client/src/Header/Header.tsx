@@ -11,7 +11,7 @@ interface HeaderProps {
 export default function Header(props: HeaderProps) {
   const mj = props.mj;
   return (
-    <Container id="global-header" className="p-1">
+    <Container id="global-header" className="">
       <SocialBanner socials={mj.bio.social_urls} />
       <Title name={mj.bio.name} />
       <NavList />

@@ -12,6 +12,7 @@ import { Container } from "react-bootstrap";
 import { Quote } from "./types/Quote";
 import Quotes from "./Quotes/Quotes";
 import { Video } from "./types/Video";
+import Videos from "./Videos/Videos";
 
 function App() {
   const [mj, setMj] = useState<MeganJohns | undefined>(undefined);
@@ -48,13 +49,15 @@ function App() {
   }
 
   return (
-    <Container style={{ maxWidth: "1000px" }}>
-      <Header mj={mj} />
-      <About bio={bio} />
-      <MjSection sectionTitle="discography" works={albums} />
-      <MjSection sectionTitle="artwork" works={artwork} />
-      <MjSection sectionTitle="videos" works={videos} />
-      <Quotes quotes={quotes} />
+    <Container className="">
+      <Container id="main-content" className="">
+        <Header mj={mj} />
+        <About bio={bio} />
+        <MjSection sectionTitle="discography" works={albums} />
+        <MjSection sectionTitle="artwork" works={artwork} />
+        <Videos videos={videos} />
+        <Quotes quotes={quotes} />
+      </Container>
     </Container>
   );
 }

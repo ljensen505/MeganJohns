@@ -1,5 +1,21 @@
+#global-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: var(--mj-white);
+  /* width: 100%; */
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+
 .list-group-item,
 .list-group-item.disabled {
   background-color: transparent;
   border: none;
+}
+
+.navbar-link {
+  background-color: transparent;
 }

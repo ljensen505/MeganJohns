@@ -7,6 +7,7 @@ import {
   faYoutube,
   faInstagram,
   faSpotify,
+  faBandcamp,
   IconDefinition,
 } from "@fortawesome/free-brands-svg-icons";
 import { Container, ListGroup } from "react-bootstrap";
@@ -18,6 +19,7 @@ interface SocialBannerProps {
 
 export default function SocialBanner(props: SocialBannerProps) {
   const socials = props.socials;
+  console.log(socials);
   const socialIconMap: { [key: string]: IconDefinition } = {
     itunes: faItunesNote,
     facebook: faFacebook,
@@ -25,6 +27,7 @@ export default function SocialBanner(props: SocialBannerProps) {
     youtube: faYoutube,
     instagram: faInstagram,
     spotify: faSpotify,
+    bandcamp: faBandcamp,
   };
 
   return (

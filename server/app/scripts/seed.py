@@ -114,6 +114,11 @@ socials = [
         social_name="spotify",
         social_url="https://open.spotify.com/artist/3CTUWD06ndDSuuUUJHm1bf",  # type: ignore
     ),
+    SocialUrl(
+        id=0,
+        social_name="bandcamp",
+        social_url="https://meganjohns.bandcamp.com/track/i-am-old",  # type: ignore
+    ),
 ]
 
 bio_html_content = ""
